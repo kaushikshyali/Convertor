@@ -1,37 +1,44 @@
 (function () {
     'use strict';
 
-        describe('specs/app.spec.js', function () {
-            describe('convertorCtrl controller of convertorModule', function () {
-                var controller, scope, $rootScope;
+        describe('convertorCtrl controller of convertorModule', function () {
+            var controller, scope, $rootScope;
 
-                beforeEach(function () {
-                    
-                    module('convertorModule');
-                    
-                    inject(function ($injector) {
-                        controller = $injector.get('$controller');
-                        $rootScope = $injector.get('$rootScope');
-                        scope = $rootScope.$new();
+            beforeEach(function () {
+
+                module('convertorModule');
+
+                inject(function ($injector) {
+                    controller = $injector.get('$controller');
+                    $rootScope = $injector.get('$rootScope');
+                    scope = $rootScope.$new();
 
 
-                        // Instantiates controller
-                        controller('convertorCtrl', {
-                            $scope: scope
-                        });
-                    });
-                    $rootScope.$digest();
-                });
-
-                describe('Basic functionality', function () {
-                    it('should return input currency converted into amount in words', function () {
-                        var input = 'ho are csdc';
-                        scope.convertNum(input);
-                        expect(scope.output).toEqual('one hundred twenty three and 75/100 ');
+                    // Instantiates controller
+                    controller('convertorCtrl', {
+                        $scope: scope
                     });
                 });
-
+                $rootScope.$digest();
             });
-        });
 
+            describe('Convert given currency in digits into amount in words', function () {
+                it('should return amount in words along with cents', function () {
+                    var input = '123.75';
+                    scope.convertNum(input);
+                    expect(scope.output).toEqual('one hundred twenty three and 75/100 ');
+                });
+                it('should return amount in words when value is 123', function () {
+                    var input = '123';
+                    scope.convertNum(input);
+                    expect(scope.output).toEqual('one hundred twenty three ');
+                });
+                it('should return amount in words with only at the end when value is 123.0', function () {
+                    var input = '123.0';
+                    scope.convertNum(input);
+                    expect(scope.output).toEqual('one hundred twenty three only');
+                });
+            });
+
+        });
 })();
