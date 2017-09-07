@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2"
+  },
+  "name": "convertor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start karma.conf.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

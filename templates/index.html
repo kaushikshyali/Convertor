@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Convertor</title>
+        <script src="../lib/angular.js"></script>
+        <script src="../lib/angular-mocks.js"></script>
+    </head>
+    <body ng-app="convertorModule">
+        <div ng-controller="convertorCtrl">
+           <form name="convertor">
+                <label for="inputValue">Input : </label> 
+                <input type="text" id="inputValue" name="inputValue" ng-model="myInt" ng-keyup="convertNum(myInt)" ng-pattern="/^(?:[0-9]+(?:\.[0-9]{0,2})?)?$/">
+                <p ng-show="convertor.inputValue.$error.pattern" style="color:red"> Only digits allowed.</p>
+                <p ng-hide="convertor.inputValue.$error.pattern">
+                  Output : {{output}}
+                </p>
+            </form>
+        </div>
+        <script src="../app/app.js"></script>
+    </body>
+</html>
